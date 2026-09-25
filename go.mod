@@ -257,3 +257,6 @@ require (
 	sigs.k8s.io/kustomize/kyaml v0.14.3-0.20230601165947-6ce0bf390ce3 // indirect
 	sigs.k8s.io/structured-merge-diff/v4 v4.4.1 // indirect
 )
+
+// CVE-2026-44740: go-billy symlink loop / resource exhaustion
+replace github.com/go-git/go-billy/v5 => github.com/redhat-chai-bot/go-git_go-billy/v5 v5.6.1-sec.1

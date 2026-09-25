@@ -354,7 +354,7 @@ github.com/go-git/gcfg
 github.com/go-git/gcfg/scanner
 github.com/go-git/gcfg/token
 github.com/go-git/gcfg/types
-# github.com/go-git/go-billy/v5 v5.6.1
+# github.com/go-git/go-billy/v5 v5.6.1 => github.com/redhat-chai-bot/go-git_go-billy/v5 v5.6.1-sec.1
 ## explicit; go 1.21
 github.com/go-git/go-billy/v5
 # github.com/go-git/go-git/v5 v5.13.1
@@ -2151,3 +2151,4 @@ sigs.k8s.io/structured-merge-diff/v4/value
 ## explicit; go 1.12
 sigs.k8s.io/yaml
 sigs.k8s.io/yaml/goyaml.v2
+# github.com/go-git/go-billy/v5 => github.com/redhat-chai-bot/go-git_go-billy/v5 v5.6.1-sec.1
