@@ -46,14 +46,10 @@ knowledge_base:
     team_keys: []
   pull_requests:
     scope: auto
-  code_generation_instructions: |
-    Follow the review instructions in REVIEW.md and agent briefing in AGENTS.md.
-    This is a downstream mirror — most source is upstream.
-    Always use build tag containers_image_openpgp for Go commands.
-    Never edit upstream source directly — use patches/ mechanism.
   learnings_scope: auto
   issues_scope: auto
   pull_requests_scope: auto
-  file_patterns:
-    - "REVIEW.md"
-    - "AGENTS.md"
+  code_guidelines:
+    - filePatterns:
+        - "REVIEW.md"
+        - "AGENTS.md"

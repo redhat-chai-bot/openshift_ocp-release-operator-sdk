@@ -16,7 +16,7 @@ Downstream mirror of the Operator SDK that builds the **Helm Operator** image fo
 ## Critical Warnings
 
 1. **NEVER edit upstream source directly** — apply changes as patches in `patches/` using the `gendiff` workflow (see [README.md](README.md#patching))
-2. **NEVER run `make build` without patching first** — always use `make -f ci/prow.Makefile patch build`
+2. **NEVER run downstream builds without patching first** — use `make -f ci/prow.Makefile patch build` for downstream/CI builds; plain `make build` is fine for upstream-compatible local development (see [`ai-docs/DEVELOPMENT.md`](ai-docs/DEVELOPMENT.md))
 3. **NEVER remove the `vendor/` directory** — downstream vendors dependencies (upstream does not)
 4. **NEVER hand-edit generated testdata** — run `make generate` to regenerate
 5. **ALWAYS use build tag `containers_image_openpgp`** — required for all Go builds
