@@ -22,7 +22,7 @@ The build exports `CGO_ENABLED=0` and uses `containers_image_openpgp`
 | Downstream compatibility gate | `make -f ci/prow.Makefile patch build` | Applies carried patches and builds Helm (`ci/prow.Makefile:12`) |
 | Compile both upstream-style executables | `make build` | Produces binaries in `build/` (`Makefile:95`) |
 | Compile Helm only | `make build/helm-operator` | Uses the root target without applying patches (`Makefile:99`) |
-| Install both executables | `make install` | Installs via Go into the selected Go binary directory (`Makefile:86`) |
+| Install both executables | `make install` | Installs via Go into the selected Go binary directory (`Makefile:90`) |
 
 The patch target modifies the checkout. Use a disposable worktree for patch/build
 validation and inspect its status afterward; do not commit patched mirror files accidentally.
@@ -79,20 +79,20 @@ Do not run merge automation as part of an unrelated documentation change.
 
 | Check | Defined behavior |
 |---|---|
-| `make test-unit` | Short race-enabled Go package tests (`Makefile:168`) |
-| `make test-sanity` | Generation, formatting, lint, license/log checks, vet (`Makefile:152`) |
-| `make test-docs` | Changelog validation, website submodules, website link build (`Makefile:162`) |
+| `make test-unit` | Short race-enabled Go package tests (`Makefile:171`) |
+| `make test-sanity` | Generation, formatting, lint, license/log checks, vet (`Makefile:153`) |
+| `make test-docs` | Changelog validation, website submodules, website link build (`Makefile:163`) |
 
 Downstream patches alter the root sanity target; inspect the patch before comparing
 patched CI behavior with an unpatched local run (`patches/00-fixsanity.patch:1`).
 The GitHub sanity workflow runs `make test-sanity` and `make test-docs`
-(`.github/workflows/test-sanity.yml:39`).
+(`.github/workflows/test-sanity.yml:42`, `.github/workflows/test-sanity.yml:52`).
 
 ## Documentation-only work
 
 [The documentation contribution guide](../website/content/en/docs/contribution-guidelines/documentation.md)
 describes website previews and `make test-docs`.
-Root agent docs are outside the website HTML input (`hack/check-links.sh:11`).
+Root agent docs are outside the website HTML input (`hack/check-links.sh:10`).
 Check their relative links, YAML, symlink, line counts, and diff separately.
 Do not assume the docs-only CI detector recognizes YAML sidecars: its patterns
 are listed in `.github/workflows/check-docs-only.sh:11`.
@@ -101,7 +101,10 @@ are listed in `.github/workflows/check-docs-only.sh:11`.
 
 1. DO NOT apply downstream patches twice to the same tree; inspect the patch target (`ci/prow.Makefile:12`).
 2. DO NOT infer JSON merge semantics from a helper name; inspect the returned patch type (`internal/helm/release/manager.go:341`).
-3. DO NOT run `make fix` expecting read-only lint; it includes `go mod tidy`, formatting, and automatic lint fixes (`Makefile:56`).
+3. DO NOT run `make fix` expecting read-only lint: the unpatched recipe runs
+   `go mod tidy`, formatting, and automatic lint fixes (`Makefile:56`).
+   The downstream patch removes `go mod tidy` but retains formatting and automatic
+   lint fixes (`patches/00-fixsanity.patch:8`).
 4. DO NOT mistake inherited upstream branch examples for this checkout's `main` base.
 
 ## SME Review Recommended
