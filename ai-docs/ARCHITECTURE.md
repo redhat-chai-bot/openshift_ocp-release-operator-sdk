@@ -135,7 +135,7 @@ It applies patches and builds the Helm executable before copying it into the run
 (`release/helm/Dockerfile:8`).
 
 The image entrypoint runs Helm with `./watches.yaml`
-(`release/helm/Dockerfile:27`).
+(`release/helm/Dockerfile:25`).
 SDK scaffold image-version injection is separately defined in the root Makefile
 (`Makefile:29`, `internal/version/version.go:25`).
 
