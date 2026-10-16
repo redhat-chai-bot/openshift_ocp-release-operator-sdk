@@ -34,7 +34,7 @@ The extra command list includes bundle, cleanup, generate, OLM, run,
 scorecard, and package-manifest conversion (`internal/cmd/operator-sdk/cli/cli.go:55`).
 
 The default configuration version is v3, with the Go v4 bundle selected by default
-(`internal/cmd/operator-sdk/cli/cli.go:147`).
+(`internal/cmd/operator-sdk/cli/cli.go:124`).
 
 ### Helm runtime
 
@@ -62,13 +62,13 @@ Each watch ties a custom-resource kind to a Helm chart directory
 
 | Bundle | Composition source |
 |---|---|
-| Go v4 | Kustomize, Go v4, manifests, scorecard (`internal/cmd/operator-sdk/cli/cli.go:85`) |
-| Ansible v1 | External Ansible plugin plus Kustomize, manifests, scorecard (`internal/cmd/operator-sdk/cli/cli.go:96`) |
-| Helm v1 | Local Helm plugin plus Kustomize, manifests, scorecard (`internal/cmd/operator-sdk/cli/cli.go:108`) |
-| Deploy-image alpha | Deploy-image plugin plus manifests (`internal/cmd/operator-sdk/cli/cli.go:120`) |
+| Go v4 | Kustomize, Go v4, manifests, scorecard (`internal/cmd/operator-sdk/cli/cli.go:73`) |
+| Ansible v1 | External Ansible plugin plus Kustomize, manifests, scorecard (`internal/cmd/operator-sdk/cli/cli.go:84`) |
+| Helm v1 | Local Helm plugin plus Kustomize, manifests, scorecard (`internal/cmd/operator-sdk/cli/cli.go:95`) |
+| Deploy-image alpha | Deploy-image plugin plus manifests (`internal/cmd/operator-sdk/cli/cli.go:106`) |
 
 Do not infer local Ansible runtime ownership from the SDK's plugin import.
-The Ansible scaffolding import is `ansible-operator-plugins` (`internal/cmd/operator-sdk/cli/cli.go:35`).
+The Ansible scaffolding import is `ansible-operator-plugins` (`internal/cmd/operator-sdk/cli/cli.go:32`).
 
 ### Runtime startup
 
@@ -171,7 +171,7 @@ This is distinct from warning-only bundle validation, documented in command help
 |---|---|---|
 | Go builder selection | `.ci-operator.yaml:1` | Build-root image configuration, not a runtime support guarantee |
 | Helm downstream container | `release/helm/Dockerfile:1` | Patch/build stage and runtime entrypoint |
-| OLM tooling | `internal/cmd/operator-sdk/cli/cli.go:59` | SDK command registration |
+| OLM tooling | `internal/cmd/operator-sdk/cli/cli.go:54` | SDK command registration |
 | Dependency module identity | `go.mod:1` | Remains `github.com/operator-framework/operator-sdk` |
 
 The build-root configuration alone does not describe live Prow job scheduling.
